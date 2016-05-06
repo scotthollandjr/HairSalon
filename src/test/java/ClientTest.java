@@ -18,4 +18,10 @@ public class ClientTest {
       con.createQuery(deleteClientsQuery).executeUpdate();
     }
   }
+
+  @Test
+  public void Client_instantiatesCorrectly() {
+    Client newClient = new Client("Betty", "10:00am");
+    assertEquals(true, newClient instanceof Client);
+  }
 }
