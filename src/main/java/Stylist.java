@@ -25,4 +25,22 @@ public class Stylist {
   public int getRate() {
     return rate;
   }
+
+  public static List<Stylist> all() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM stylists";
+      return con.createQuery(sql).executeAndFetch(Stylist.class);
+    }
+  }
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO stylists(name, rate) VALUES (:name, :rate);";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("name", this.name)
+        .addParameter("rate", this.rate)
+        .executeUpdate()
+        .getKey();
+    }
+  }
 }

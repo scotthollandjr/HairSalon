@@ -36,4 +36,11 @@ public class StylistTest {
     Stylist newStylist = new Stylist("Trixy", 15);
     assertEquals(15, newStylist.getRate());
   }
+
+  @Test
+  public void getId_assignsId_int() {
+    Stylist newStylist = new Stylist("Trixy", 15);
+    newStylist.save();
+    assertEquals(Stylist.all().get(0).getId(), newStylist.getId());
+  }
 }
