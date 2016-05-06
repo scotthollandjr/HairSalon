@@ -43,4 +43,11 @@ public class StylistTest {
     newStylist.save();
     assertEquals(Stylist.all().get(0).getId(), newStylist.getId());
   }
+
+  @Test
+  public void find_returnsStylistById_String() {
+    Stylist newStylist = new Stylist("Trixy", 15);
+    newStylist.save();
+    assertEquals("Trixy", Stylist.find(newStylist.getId()).getName());
+  }
 }
