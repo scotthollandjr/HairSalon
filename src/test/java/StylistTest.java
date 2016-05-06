@@ -38,6 +38,13 @@ public class StylistTest {
   }
 
   @Test
+  public void all_returnList_List() {
+    Stylist newStylist = new Stylist("Trixy", 15);
+    newStylist.save();
+    assertTrue(Stylist.all() instanceof List);
+  }
+
+  @Test
   public void getId_assignsId_int() {
     Stylist newStylist = new Stylist("Trixy", 15);
     newStylist.save();
