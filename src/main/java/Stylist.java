@@ -6,7 +6,7 @@ public class Stylist {
   private int id;
   private String name;
   private int rate;
-  private List<String> days;
+  private List<String> availableSlots;
   private List<Client> clientList;
 
   public Stylist(String name, int rate) {

@@ -24,4 +24,20 @@ public class ClientTest {
     Client newClient = new Client("Betty", "10:00am");
     assertEquals(true, newClient instanceof Client);
   }
+
+  @Test
+  public void saveClientToStylist_savesById_int() {
+    Client newClient = new Client("Betty", "10:00am");
+    newClient.saveClientToStylist(1);
+    assertEquals(Client.all().get(0).getId(), newClient.getId());
+  }
+
+  @Test
+  public void saveClientToStylist_savesMultiple() {
+    Client newClient1 = new Client("Betty", "10:00am");
+    newClient1.saveClientToStylist(1);
+    Client newClient2 = new Client("Botty", "10:01am");
+    newClient2.saveClientToStylist(1);
+    assertEquals(2, Client.all().size());
+  }
 }
