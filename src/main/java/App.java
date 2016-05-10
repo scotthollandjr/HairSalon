@@ -14,6 +14,7 @@ public class App {
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/index.vtl");
+      model.put("stylists", Stylist.all());
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
@@ -23,7 +24,7 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/index", (request, response) -> {
+    post("/new/stylist", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       String name = request.queryParams("name");
       String rateString = request.queryParams("rate");
@@ -39,6 +40,7 @@ public class App {
     get("/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       int idGet = Integer.parseInt(request.params(":id"));
+      // model.put("id", idGet);
       model.put("stylist", Stylist.find(idGet));
       model.put("clients", Client.getClients(idGet));
       model.put("template", "templates/stylist.vtl");
@@ -48,17 +50,19 @@ public class App {
     get("/form/:id", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      int idGet = Integer.parseInt(request.params(":id"));
+      model.put("id", idGet);
       model.put("stylist", stylist);
       model.put("template", "templates/form-client.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    post("/:id", (request, response) -> {
+    post("/new/client", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       String name = request.queryParams("name");
       String appointment = request.queryParams("appointment");
-      int idGet = Integer.parseInt(request.params(":id"));
-      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+      int idGet = Integer.parseInt(request.queryParams("stylistid"));
+      Stylist stylist = Stylist.find(idGet);
       model.put("id", idGet);
       model.put("stylist", stylist);
       Client newClient = new Client(name, appointment);
