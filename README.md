@@ -1,4 +1,4 @@
-# _Object Oriented Java Independent project_
+# _Java Database Basics Independent project_
 
 ##### _5/6/2016_
 
