@@ -1,4 +1,4 @@
-# _Java Database Basics Independent project_
+# _Hair Salon Project_
 
 ##### _5/6/2016_
 
